@@ -17,8 +17,8 @@ export default {
     return {
       check: "",
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      zoom: 8,
-      center: [39.988757,-75.547020],
+      zoom: 7,
+      center: [39.988757,-75.847020],
       markerLatLng: [
         {coord: [40.5187,-78.3947]},
         {coord: [40.6884, -75.2207]},
