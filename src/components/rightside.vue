@@ -1,18 +1,26 @@
 <template>
   <div>
     <h1>Top Local Restaurants</h1>
+   <div v-if="restaurants.length < 1" class="description">
+    <h2>Welcome <br> This site is used so you can easily access restaurants 
+    across the East Coast.  Pick a city and check the top 4 star Restaurants
+    based on Trip Advisory</h2>
+   </div>
+    
     <div
       class="restaurantContainer"
       v-for="(restaurant, index) in restaurants"
       :key="index"
     >
-      <panel
+     <panel
+        :photo="restaurant.photo"
         :name="restaurant.name"
         :address="restaurant.address"
         :phone="restaurant.phone"
         :website="restaurant.website"
       ></panel>
     </div>
+  
   </div>
 </template>
 
@@ -30,7 +38,11 @@ export default {
       restaurants: [],
     };
   },
-  methods: {},
+  methods: {
+    onChangePage(){
+      
+    }
+  },
   created() {
     bus.$on("clickedCity", (data) => {
       axios
@@ -57,4 +69,21 @@ export default {
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+
+h1{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.description{
+  text-align: center;
+  margin: 0 20px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+</style>

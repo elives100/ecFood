@@ -1,29 +1,29 @@
 <template>
   <div id="app">
-    <div class="rightside">
-      <rightSide></rightSide>
-    </div>
-    <div class="left">
+ 
+    <div class="map">
+      <spinner></spinner>
+      <popup class="popup"></popup>
       <Maps></Maps>
     </div>
+   
 
-    <component class="content" :is="component"></component>
   </div>
 </template>
 
 <script>
 import Maps from "./components/GoogleMap.vue";
-import rightSide from "./components/rightside";
-
+import popup from "./components/popup.vue"
+import spinner from "./components/spinner.vue"
 export default {
   name: "App",
   components: {
     Maps: Maps,
-    rightSide: rightSide,
+    popup:popup,
+    spinner: spinner
   },
   data() {
     return {
-      component: "",
     };
   },
 };
@@ -36,43 +36,28 @@ export default {
 }
 
 #app {
-  display: grid;
+ // display: grid;
   height: 100vh;
-  grid-template-columns: 65% 35%;
-  grid-template-areas: "left right";
+ // grid-template-columns: 60% 40%;
+ // grid-template-areas: "left right";
 }
 
-.rightside {
+/*.rightside {
   grid-area: right;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.986);
-  color: white;
-}
+  max-width: 100%;
+  overflow: scroll;
+  
+}*/
 
-.left {
-  grid-area: left;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.842),
-    rgba(0, 0, 0, 0.972),
-    rgba(0, 0, 0, 0.842)
-  );
+.map {
+ // grid-area: left;
+ // display: flex;
+//  flex-direction: column;
   background-size: cover;
   background-repeat: no-repeat;
-  .heroTitle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    margin-top: 10%;
-  }
-  .content {
-    padding: 5%;
-    flex: 1;
-  }
+  z-index: 0;
 }
+
+
+
 </style>
