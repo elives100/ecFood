@@ -47,16 +47,16 @@ export default {
   methods: {
     markerClick(marker) {
        bus.$emit("clickedCity", marker);
-     let whole = {
+  /*   let whole = {
       coord1:  Math.round(marker.coord[0]),
       coord2: Math.round(marker.coord[1])
-     }
-      if(whole.coord1 == 41  && whole.coord2 == -74 || whole.coord1 == 40 && whole.coord2 == -75){
+     }*/
+   //   if(whole.coord1 == 41  && whole.coord2 == -74 || whole.coord1 == 40 && whole.coord2 == -75){
        this.center = marker.coord
        setTimeout(()=>{
          this.zoom = 10
        }, 500)
-      }
+    //  }
     },
     closePanel(){
       bus.$emit("mapClicked", this.markerLatLng)

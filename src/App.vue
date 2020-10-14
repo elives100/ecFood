@@ -4,6 +4,7 @@
     <div class="map">
       <transition name="fade">
         <div v-if="intro" class="shadow">
+        <h4>&#40;Trip Advisor&#41;</h4>
         <h1>Top Ranked Restaurants</h1>
         <h3>In the East</h3>
         <button @click="intro = false">Explore</button>
@@ -81,6 +82,9 @@ export default {
   font-family: 'Source Serif Pro', serif;
 h3{
   margin: 30px 30px;
+}
+h1{
+  text-align: center;
 }
 button{
   width: 130px;

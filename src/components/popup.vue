@@ -2,7 +2,7 @@
     <div>
     <div v-if="restaurants.length > 0" class="container">
       <button class="close" @click="closeMap()">&times;</button>
-        <h1>Top Local Restaurants <br> TripAdvisory ratings</h1>
+        <h1>Top Local Restaurants <br> TripAdvisor ratings</h1>
     <div
       class="restaurantContainer"
       v-for="(restaurant, index) in restaurants"
