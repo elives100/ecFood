@@ -4,9 +4,9 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 export const bus = new Vue();
-import JwPagination from 'jw-vue-pagination';
+import { Plugin as VBreakpoint } from "vue-breakpoint-component";
 
-Vue.component('jw-pagination', JwPagination);
+Vue.use(VBreakpoint);
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);

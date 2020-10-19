@@ -1,50 +1,54 @@
 <template>
-    <div>
-        <div v-if="loading" class="container">
-        <div class="lds-ripple">
+  <div>
+    <div v-if="loading" class="container">
+      <div class="lds-ripple">
         <div></div>
         <div></div>
-        </div>
-        </div>
+      </div>
     </div>
+    <div v-else>{{error}}</div>
+  </div>
 </template>
 
 
 <script>
-import {bus} from "../main.js"
+import { bus } from "../main.js";
 
 export default {
-    data() {
-        return {
-            loading:false
-        }
-    },
-    created(){
-        bus.$on('clickedCity', ()=>{
-            this.loading = true;
-            console.log(this.loading)
-        })
-        bus.$on("testing", ()=>{
-            this.loading = false
-            console.log(this.loading)
-        })
-    }
-    
-}
+  data() {
+    return {
+      loading: false,
+      error: ""
+    };
+  },
+  created() {
+    bus.$on("clickedCity", () => {
+      this.loading = true;
+      console.log(this.loading);
+    });
+    bus.$on("testing", () => {
+      this.loading = false;
+      console.log(this.loading);
+    });
+    bus.$on("mapError", data => {
+      this.loading = false;
+      this.error = data;
+    });
+  }
+};
 </script>
 
 <style scoped lang="scss">
-.container{
-    background-color:rgba(0, 0, 0, 0.2);
-    position: absolute;
-    z-index:999;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .lds-ripple {
   display: inline-block;
@@ -78,6 +82,4 @@ export default {
     opacity: 0;
   }
 }
-
-
 </style>
