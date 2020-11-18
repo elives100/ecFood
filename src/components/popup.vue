@@ -55,6 +55,9 @@ export default {
         .then(response => {
           let array = response.data.data;
           let value = undefined;
+          //Trip advisory api has restaurant that does not have photos added to their data. 
+          //So I used the filter method to only show restaurants that do because
+          //Some restaurants were showing blank thumbnails in the popup window
           let results = array.filter(item => {
             return item.photo !== value;
           });
