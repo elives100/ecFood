@@ -6,7 +6,11 @@
         Top Local Restaurants
         <br />TripAdvisor ratings
       </h1>
-      <div class="restaurantContainer" v-for="(restaurant, index) in restaurants" :key="index">
+      <div
+        class="restaurantContainer"
+        v-for="(restaurant, index) in restaurants"
+        :key="index"
+      >
         <panel
           :photo="restaurant.photo"
           :name="restaurant.name"
@@ -25,22 +29,22 @@ import axios from "axios";
 import panel from "./panel";
 export default {
   components: {
-    panel
+    panel,
   },
   data() {
     return {
       restaurants: [],
-      loading: false
+      loading: false,
     };
   },
   methods: {
     closeMap() {
       this.restaurants.splice(0, this.restaurants.length);
       console.log(this.restaurants);
-    }
+    },
   },
   created() {
-    bus.$on("clickedCity", data => {
+    bus.$on("clickedCity", (data) => {
       axios
         .get(
           `https://tripadvisor1.p.rapidapi.com/restaurants/list-by-latlng?limit=17&restaurant_tagcategory=10591&restaurant_mealtype=10599&currency=USD&distance=20&lunit=mi&lang=en_US&min_rating=4&latitude=${data.coord[0]}&longitude=${data.coord[1]}`,
@@ -48,23 +52,23 @@ export default {
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
               "x-rapidapi-key":
-                "957a8b212bmsh70bb7e09ae2f6bbp1993cejsnab632fe079bc"
-            }
+                "957a8b212bmsh70bb7e09ae2f6bbp1993cejsnab632fe079bc",
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           let array = response.data.data;
           let value = undefined;
-          //Trip advisory api has restaurant that does not have photos added to their data. 
+          //Trip advisory api has restaurant that does not have photos added to their data.
           //So I used the filter method to only show restaurants that do because
           //Some restaurants were showing blank thumbnails in the popup window
-          let results = array.filter(item => {
+          let results = array.filter((item) => {
             return item.photo !== value;
           });
           this.restaurants = results;
           bus.$emit("testing", this.loading);
         })
-        .catch(err => {
+        .catch((err) => {
           bus.$emit("mapError", err);
         });
     });
@@ -72,7 +76,7 @@ export default {
       this.restaurants.splice(0, this.restaurants.length);
       console.log(this.restaurants);
     });
-  }
+  },
 };
 </script>
 
@@ -115,5 +119,8 @@ h1 {
   cursor: pointer;
   top: 0px;
   left: px;
+}
+.close:hover {
+  background-color: gray;
 }
 </style>
