@@ -1,6 +1,5 @@
 # EcFood
 
-https://ecfood.herokuapp.com/
 
 ## Project setup
 ```
